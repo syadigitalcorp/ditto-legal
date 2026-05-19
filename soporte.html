@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soporte · Ditto</title>
+  <meta name="description" content="Centro de ayuda Ditto. Preguntas frecuentes para clientes y proveedores, canales de contacto y soporte 24x7 para incidencias.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #4F7CF7; --green-mid: #2FAF9B; --turquoise: #3EC7B7; --turquoise-light: #E6FAF7; --jade: #1F7A6B; --gray-bg: #f7f9ff; --gray-text: #666; --dark: #1a1a1a; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--dark); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e8eef8; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--green-mid); letter-spacing: -1px; text-decoration: none; }
+    .nav-back { font-size: 14px; color: var(--gray-text); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--green-mid); }
+
+    .page-hero { background: linear-gradient(135deg, #2FAF9B 0%, #3EC7B7 100%); padding: 120px 48px 70px; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -80px; right: -60px; width: 280px; height: 280px; background: rgba(255,255,255,0.08); border-radius: 50%; }
+    .page-hero::after { content: ''; position: absolute; bottom: -100px; left: -40px; width: 240px; height: 240px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 64px); font-weight: 900; color: white; letter-spacing: -1.5px; margin-bottom: 14px; position: relative; z-index: 1; }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; margin-bottom: 36px; position: relative; z-index: 1; }
+    .audience-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .audience-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--jade); padding: 14px 28px; border-radius: 100px; font-size: 15px; font-weight: 500; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .audience-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .audience-btn.outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); padding: 12px 26px; }
+    .audience-btn.outline:hover { background: rgba(255,255,255,0.12); border-color: white; }
+
+    .incident-banner { background: #fff8e1; border-bottom: 1px solid #ffe082; padding: 14px 48px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; color: #6b4f00; font-weight: 400; }
+    .incident-banner strong { color: #4a3700; font-weight: 500; }
+    .incident-banner .dot-pulse { width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+
+    .content { max-width: 980px; margin: 0 auto; padding: 80px 48px 60px; }
+    .section-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; color: var(--dark); margin-bottom: 36px; letter-spacing: -1px; }
+
+    .faq-block { margin-bottom: 64px; }
+    .faq-item { background: white; border: 1px solid #e8eef8; border-radius: 14px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+    .faq-item[open] { border-color: var(--turquoise); box-shadow: 0 8px 24px rgba(47,175,155,0.08); }
+    .faq-item summary { padding: 20px 24px; cursor: pointer; font-size: 15px; font-weight: 500; color: var(--dark); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: background 0.2s; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { background: var(--turquoise-light); }
+    .faq-item summary::after { content: '+'; font-size: 24px; font-weight: 300; color: var(--green-mid); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-answer { padding: 0 24px 22px; font-size: 14px; color: var(--gray-text); line-height: 1.75; font-weight: 300; }
+    .faq-answer strong { color: var(--dark); font-weight: 500; }
+
+    .contact-section { background: var(--gray-bg); padding: 80px 48px; }
+    .contact-wrapper { max-width: 980px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 36px; }
+    .contact-card { background: white; border: 1px solid #e8eef8; border-radius: 18px; padding: 28px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: inherit; display: block; }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(47,175,155,0.12); border-color: var(--turquoise); }
+    .contact-icon { width: 52px; height: 52px; background: var(--turquoise-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 24px; }
+    .contact-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .contact-card p { font-size: 13px; color: var(--gray-text); line-height: 1.6; font-weight: 300; margin-bottom: 10px; }
+    .contact-value { font-size: 14px; color: var(--green-mid); font-weight: 500; word-break: break-word; }
+
+    .cta-bottom { text-align: center; padding: 60px 48px 100px; max-width: 720px; margin: 0 auto; }
+    .cta-bottom h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--dark); margin-bottom: 12px; letter-spacing: -0.5px; }
+    .cta-bottom p { font-size: 15px; color: var(--gray-text); font-weight: 300; margin-bottom: 28px; }
+    .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: transform 0.2s, background 0.2s; }
+    .cta-btn.primary { background: var(--green-mid); color: white; }
+    .cta-btn.primary:hover { background: var(--jade); transform: translateY(-2px); }
+    .cta-btn.whatsapp { background: #25D366; color: white; }
+    .cta-btn.whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+    .site-footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 32px 48px; font-size: 13px; font-weight: 300; }
+    .site-footer span { color: var(--turquoise); }
+    .site-footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+    .site-footer a:hover { color: var(--turquoise); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-hero { padding: 100px 24px 56px; }
+      .incident-banner { padding: 12px 24px; font-size: 13px; flex-wrap: wrap; text-align: center; }
+      .content { padding: 56px 24px 40px; }
+      .contact-section { padding: 56px 24px; }
+      .cta-bottom { padding: 40px 24px 70px; }
+      .site-footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="https://www.ditto.com.pe/" class="nav-logo">Ditto</a>
+  <a href="https://www.ditto.com.pe/" class="nav-back">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al inicio
+  </a>
+</nav>
+
+<div class="page-hero">
+  <h1>¿Cómo podemos ayudarte?</h1>
+  <p>Centro de soporte Ditto · Respuestas, contacto y atención cuando lo necesites</p>
+  <div class="audience-buttons">
+    <a href="#clientes" class="audience-btn">
+      Soy cliente
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#proveedores" class="audience-btn outline">
+      Soy proveedor
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="incident-banner">
+  <span class="dot-pulse"></span>
+  <span><strong>Atención 24x7 para incidencias activas</strong> · Si tienes una emergencia durante un servicio en curso, escríbenos por WhatsApp en cualquier momento</span>
+</div>
+
+<div class="content">
+
+  <section class="faq-block" id="clientes">
+    <div class="section-label">Para clientes</div>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+
+    <details class="faq-item">
+      <summary>¿Cómo agendo un servicio?</summary>
+      <div class="faq-answer">Descarga la app de Ditto, crea tu cuenta, elige el servicio que necesitas, selecciona fecha y hora, y confirma tu dirección. Recibirás la confirmación del especialista asignado en pocos minutos.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué métodos de pago aceptan?</summary>
+      <div class="faq-answer">Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), Yape y Plin. El pago se realiza directamente desde la app al confirmar tu reserva, de forma segura.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo verifican a los especialistas?</summary>
+      <div class="faq-answer">Cada especialista pasa por un proceso de validación que incluye verificación de identidad (DNI), revisión de antecedentes penales y policiales, y una evaluación de habilidades según el servicio. Solo el <strong>5%</strong> de los postulantes es aprobado.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo cancelar o reprogramar mi reserva?</summary>
+      <div class="faq-answer">Sí. Puedes cancelar o reprogramar sin costo hasta <strong>2 horas antes</strong> del servicio. Cancelaciones con menos de 2 horas de anticipación pueden generar un cargo del 30% del valor del servicio.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué pasa si el especialista no llega?</summary>
+      <div class="faq-answer">Si el especialista no se presenta o llega con más de 30 minutos de retraso sin aviso, se te reembolsa el 100% del monto pagado y nuestro equipo te asigna otro especialista de forma prioritaria. Repórtalo de inmediato por WhatsApp.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Hay garantía de satisfacción?</summary>
+      <div class="faq-answer">Sí. Si el servicio no cumple con lo acordado, tienes <strong>24 horas</strong> para reportarlo. Nuestro equipo evaluará el caso y, según corresponda, te ofrecerá una reprogramación gratuita o un reembolso parcial o total.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué hago si tengo un problema durante el servicio?</summary>
+      <div class="faq-answer">Para cualquier inconveniente <strong>en tiempo real</strong>, contáctanos por WhatsApp. Nuestro equipo de incidencias atiende <strong>24x7</strong> y puede coordinar el reemplazo del especialista, cancelación con reembolso o cualquier otra solución necesaria.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo dejo una calificación o reseña?</summary>
+      <div class="faq-answer">Al finalizar el servicio, recibirás una notificación para calificar al especialista del 1 al 5 y dejar un comentario opcional. Tu opinión ayuda a mantener la calidad de la plataforma.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo presento un reclamo formal?</summary>
+      <div class="faq-answer">Puedes registrar tu reclamo en nuestro <a href="https://www.ditto.com.pe/reclamaciones" style="color: var(--green-mid); font-weight: 500;">Libro de Reclamaciones Virtual</a>, de acuerdo a la normativa de INDECOPI. Te responderemos en un plazo máximo de 30 días calendario.</div>
+    </details>
+  </section>
+
+  <section class="faq-block" id="proveedores">
+    <div class="section-label">Para proveedores</div>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+
+    <details class="faq-item">
+      <summary>¿Cómo me registro como especialista?</summary>
+      <div class="faq-answer">Descarga la app Ditto Pro (próximamente disponible), completa tu perfil con tus datos personales, sube los documentos requeridos y selecciona los servicios que ofreces. Nuestro equipo revisará tu solicitud en un plazo de <strong>3 a 5 días hábiles</strong>.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué documentos necesito presentar?</summary>
+      <div class="faq-answer">DNI vigente, certificado de antecedentes penales y policiales (no mayor a 3 meses), una foto de perfil profesional, y certificaciones o experiencia relevante para el servicio que ofreces (cuando aplique).</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cuál es la comisión de Ditto?</summary>
+      <div class="faq-answer">Ditto retiene una comisión del <strong>20%</strong> sobre el valor de cada servicio completado. El 80% restante te corresponde íntegramente. No cobramos cuotas de inscripción ni mensualidades.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cuándo y cómo recibo mis pagos?</summary>
+      <div class="faq-answer">Los pagos se procesan <strong>semanalmente</strong>, los días viernes, por los servicios completados entre lunes y domingo de la semana anterior. Recibes el depósito directamente en tu cuenta bancaria registrada.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo se asignan los servicios?</summary>
+      <div class="faq-answer">Las solicitudes se asignan según cercanía geográfica, calificación promedio, disponibilidad horaria y especialización. Mientras mejor sea tu calificación, mayor prioridad recibirás en nuevas asignaciones.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo elegir qué servicios aceptar?</summary>
+      <div class="faq-answer">Sí. Cuando llega una solicitud, tienes <strong>5 minutos</strong> para aceptarla o rechazarla sin penalidad. Rechazar reiteradamente solicitudes puede afectar tu visibilidad en la plataforma.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué pasa si recibo una mala calificación?</summary>
+      <div class="faq-answer">Una mala calificación aislada no afecta tu cuenta. Sin embargo, si tu promedio cae por debajo de <strong>4.0 estrellas</strong>, te contactaremos para revisar el caso y ofrecerte capacitación. Cuentas con promedio bajo 3.5 sostenido pueden ser suspendidas.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué razones pueden causar la suspensión de mi cuenta?</summary>
+      <div class="faq-answer">Incumplir términos del servicio, no presentarse a citas confirmadas, recibir reportes graves de clientes, intentar realizar pagos fuera de la plataforma, o falsificar documentación. Toda suspensión es revisada por nuestro equipo antes de aplicarse.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo cambio mi disponibilidad u horarios?</summary>
+      <div class="faq-answer">Desde la app Ditto Pro puedes ajustar tu calendario en cualquier momento: bloquear días, modificar tu zona de cobertura o pausar tu cuenta temporalmente sin perder tu antigüedad.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Tengo cobertura por accidentes durante el servicio?</summary>
+      <div class="faq-answer">Ditto cuenta con un seguro de responsabilidad civil que cubre incidentes ocurridos durante la prestación del servicio. Para más detalles, escríbenos a <a href="mailto:soporte@ditto.com.pe" style="color: var(--green-mid); font-weight: 500;">soporte@ditto.com.pe</a>.</div>
+    </details>
+  </section>
+</div>
+
+<section class="contact-section">
+  <div class="contact-wrapper">
+    <div class="section-label" style="text-align: center;">Canales de contacto</div>
+    <h2 class="section-title" style="text-align: center;">Estamos para ayudarte</h2>
+
+    <div class="contact-grid">
+      <a href="mailto:soporte@ditto.com.pe" class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <h3>Email de soporte</h3>
+        <p>Consultas, reclamos y solicitudes</p>
+        <div class="contact-value">soporte@ditto.com.pe</div>
+      </a>
+
+      <a href="https://wa.me/51949750677?text=Hola,%20necesito%20ayuda%20con%20Ditto." target="_blank" class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Atención inmediata e incidencias</p>
+        <div class="contact-value">Escríbenos aquí</div>
+      </a>
+
+      <div class="contact-card" style="cursor: default;">
+        <div class="contact-icon">🕘</div>
+        <h3>Horario general</h3>
+        <p>Atención de consultas y casos no urgentes</p>
+        <div class="contact-value">Lun a Vie · 8am – 6pm</div>
+      </div>
+
+      <div class="contact-card" style="cursor: default;">
+        <div class="contact-icon">🚨</div>
+        <h3>Incidencias 24x7</h3>
+        <p>Servicios en curso o emergencias</p>
+        <div class="contact-value">Disponible siempre</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-bottom">
+  <h2>¿No encontraste lo que buscabas?</h2>
+  <p>Escríbenos directamente y te respondemos lo antes posible.</p>
+  <div class="cta-buttons">
+    <a href="mailto:soporte@ditto.com.pe" class="cta-btn primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Enviar email
+    </a>
+    <a href="https://wa.me/51949750677?text=Hola,%20necesito%20ayuda%20con%20Ditto." target="_blank" class="cta-btn whatsapp">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 <span>Ditto</span> · SYA DIGITAL CORP SAC · RUC 20613156616 · Lima, Perú</p>
+  <p style="margin-top: 8px;">
+    <a href="/terminos">Términos</a>·
+    <a href="/privacidad">Privacidad</a>·
+    <a href="https://www.ditto.com.pe/devoluciones">Devoluciones</a>·
+    <a href="https://www.ditto.com.pe/reclamaciones">Libro de reclamaciones</a>
+  </p>
+</footer>
+
+</body>
+</html>

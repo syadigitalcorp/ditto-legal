@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliminar mi cuenta · Ditto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --green-mid: #2FAF9B; --turquoise: #3EC7B7; --turquoise-light: #E6FAF7; --jade: #1F7A6B; --gray-text: #666; --dark: #1a1a1a; --warn: #C0392B; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--dark); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e8eef8; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--green-mid); letter-spacing: -1px; text-decoration: none; }
+    .nav-back { font-size: 14px; color: var(--gray-text); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--green-mid); }
+    .page-hero { background: linear-gradient(135deg, #1F7A6B 0%, #2FAF9B 100%); padding: 120px 48px 60px; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: white; letter-spacing: -1px; margin-bottom: 12px; }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 16px; font-weight: 300; max-width: 780px; }
+    .content { max-width: 780px; margin: 0 auto; padding: 64px 48px 100px; }
+    .legal-section { margin-bottom: 48px; }
+    .legal-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--turquoise-light); }
+    .legal-section p { font-size: 15px; color: var(--gray-text); line-height: 1.8; font-weight: 300; margin-bottom: 12px; }
+    .legal-section ul, .legal-section ol { padding-left: 22px; margin-bottom: 12px; }
+    .legal-section li { font-size: 15px; color: var(--gray-text); line-height: 1.8; font-weight: 300; margin-bottom: 8px; }
+    .highlight-box { background: var(--turquoise-light); border-left: 4px solid var(--turquoise); border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
+    .highlight-box p { color: var(--jade); font-weight: 400; margin: 0; }
+    .warn-box { background: #FDECEA; border-left: 4px solid var(--warn); border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
+    .warn-box p { color: var(--warn); font-weight: 400; margin: 0; }
+    .cta-btn { display: inline-block; background: var(--warn); color: white; text-decoration: none; padding: 14px 28px; border-radius: 100px; font-size: 15px; font-weight: 500; margin: 16px 0 4px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(192,57,43,0.25); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+    .data-table th { background: var(--turquoise-light); color: var(--jade); font-weight: 500; padding: 12px 16px; text-align: left; }
+    .data-table td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; color: var(--gray-text); font-weight: 300; vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .site-footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 32px 48px; font-size: 13px; font-weight: 300; }
+    .site-footer span { color: var(--turquoise); }
+    .site-footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+    .site-footer a:hover { color: var(--turquoise); }
+    @media (max-width: 768px) { nav { padding: 16px 24px; } .page-hero { padding: 100px 24px 48px; } .content { padding: 48px 24px 80px; } .data-table { font-size: 13px; } .site-footer { padding: 24px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="https://www.ditto.com.pe/" class="nav-logo">Ditto</a>
+  <a href="https://www.ditto.com.pe/" class="nav-back">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al inicio
+  </a>
+</nav>
+
+<div class="page-hero">
+  <h1>Eliminar mi cuenta</h1>
+  <p>Si deseas eliminar permanentemente tu cuenta de Ditto y todos los datos personales asociados, esta página te guía paso a paso.</p>
+</div>
+
+<div class="content">
+
+  <div class="legal-section">
+    <h2>Cómo solicitar la eliminación</h2>
+    <p>Puedes iniciar la eliminación de tu cuenta por cualquiera de estas dos vías. Ambas tienen el mismo efecto.</p>
+
+    <h3 style="margin-top:24px; font-size:17px; color:var(--dark); font-weight:500;">Opción 1 — Desde la app</h3>
+    <ol>
+      <li>Abre la aplicación <strong>Ditto Provider</strong> en tu dispositivo.</li>
+      <li>Ve a la sección <strong>Mi perfil</strong> (icono de perfil).</li>
+      <li>Desliza hacia abajo hasta el final.</li>
+      <li>Toca el botón <strong>"Eliminar mi cuenta"</strong>.</li>
+      <li>Confirma la solicitud. Se abrirá tu cliente de correo con un mensaje pre-redactado dirigido a soporte@ditto.com.pe.</li>
+      <li>Envía ese correo. La sesión se cerrará automáticamente.</li>
+    </ol>
+
+    <h3 style="margin-top:24px; font-size:17px; color:var(--dark); font-weight:500;">Opción 2 — Por correo electrónico</h3>
+    <p>Envía un correo a <strong>soporte@ditto.com.pe</strong> con:</p>
+    <ul>
+      <li><strong>Asunto:</strong> Eliminar cuenta</li>
+      <li><strong>Cuerpo:</strong> indica el correo electrónico y el número de teléfono que registraste en la plataforma.</li>
+    </ul>
+    <p><a class="cta-btn" href="mailto:soporte@ditto.com.pe?subject=Eliminar%20cuenta&body=Hola%2C%20solicito%20eliminar%20mi%20cuenta%20de%20Ditto.%0A%0ACorreo%20registrado%3A%20%5Btu%20correo%5D%0ATel%C3%A9fono%20registrado%3A%20%5Btu%20tel%C3%A9fono%5D%0A%0AGracias.">Enviar solicitud por correo</a></p>
+  </div>
+
+  <div class="legal-section">
+    <h2>Plazo de procesamiento</h2>
+    <p>Procesaremos tu solicitud en un plazo máximo de <strong>20 días hábiles</strong>, conforme a la Ley N° 29733 — Ley de Protección de Datos Personales del Perú.</p>
+    <p>Recibirás un correo de confirmación cuando la eliminación se haya completado.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>Qué datos se eliminan</h2>
+    <p>La eliminación es permanente e irreversible. Se borrarán:</p>
+    <ul>
+      <li>Tu perfil de usuario (nombre, foto, mensaje de presentación, datos de contacto).</li>
+      <li>Tu DNI y datos de identidad.</li>
+      <li>Tu número de teléfono y correo electrónico registrados.</li>
+      <li>Tus fotografías subidas a la plataforma.</li>
+      <li>Tus datos bancarios (cuenta y CCI).</li>
+      <li>Tu historial de preferencias y configuraciones.</li>
+      <li>Los identificadores de notificación (FCM token) y de dispositivo asociados.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>Qué datos se conservan y por cuánto tiempo</h2>
+    <p>Algunos datos deben conservarse por obligación legal aun después de eliminar tu cuenta. Se mantienen disociados de tu identidad personal donde sea técnicamente posible y bajo medidas de seguridad reforzadas:</p>
+    <table class="data-table">
+      <tr><th>Tipo de dato</th><th>Tiempo de conservación</th><th>Motivo</th></tr>
+      <tr><td>Datos de transacciones (servicios completados, montos, comisiones)</td><td>5 años</td><td>Obligación tributaria SUNAT</td></tr>
+      <tr><td>Datos de reclamos</td><td>3 años desde la resolución</td><td>Código de Protección y Defensa del Consumidor (Ley 29571)</td></tr>
+      <tr><td>Datos requeridos por orden judicial o ley vigente</td><td>Según la norma aplicable</td><td>Cumplimiento legal</td></tr>
+    </table>
+    <div class="highlight-box">
+      <p>Una vez vencidos los plazos de conservación legal, esa información también se eliminará de nuestros sistemas.</p>
+    </div>
+  </div>
+
+  <div class="legal-section">
+    <h2>Importante</h2>
+    <div class="warn-box">
+      <p>La eliminación de cuenta es <strong>permanente</strong>. No podrás recuperar tu historial, tus servicios completados ni tu reputación construida en la plataforma. Si solo deseas pausar tu actividad temporalmente, contáctanos antes a soporte@ditto.com.pe.</p>
+    </div>
+  </div>
+
+  <div class="legal-section">
+    <h2>Contacto</h2>
+    <p>Para consultas sobre el proceso de eliminación:</p>
+    <ul>
+      <li>Correo: <a href="mailto:soporte@ditto.com.pe" style="color: var(--green-mid);">soporte@ditto.com.pe</a></li>
+    </ul>
+    <p>También puedes presentar una queja ante la <strong>Autoridad Nacional de Protección de Datos Personales</strong> del Ministerio de Justicia del Perú.</p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 <span>Ditto</span> · SYA DIGITAL CORP SAC · RUC 20613156616 · Lima, Perú &nbsp;·&nbsp; <a href="https://www.ditto.com.pe/terminos">Términos</a> <a href="https://www.ditto.com.pe/privacidad">Privacidad</a></p>
+</footer>
+
+</body>
+</html>
